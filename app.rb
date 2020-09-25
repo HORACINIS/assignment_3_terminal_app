@@ -1,6 +1,6 @@
 require_relative 'controller'
 require_relative 'customer'
-require "tty-prompt"
+# require "tty-prompt"
 
 include Controller
 include Customer
