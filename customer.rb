@@ -7,10 +7,10 @@ module Customer
             @address = address
             @@customers_created += 1
         end
+        
         def self.created_customers
             puts "customer created #{@@customers_created}"
         end
-
     end
 
 

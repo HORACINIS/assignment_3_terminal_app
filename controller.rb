@@ -25,7 +25,11 @@ module Controller
         puts "Is this information correct? - [Y]yes or [N]No"
         ask_if_details_correct = gets.chomp.downcase
 
-        # if ask_if_details_correct == 'yes' || ask_if_details_correct == 'y'
+        if ask_if_details_correct == 'yes' || ask_if_details_correct == 'y'
+
+        else
+
+        end
 
     end
 

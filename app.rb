@@ -5,44 +5,31 @@ require "tty-prompt"
 include Controller
 include Customer
 
-prompt = TTY::Prompt.new # This is a requirement to be able to use the tty prompt feature
+# This a requirement to be able to use the tty prompt feature
+prompt = TTY::Prompt.new
 
-puts 'Welcome to my virtual takeaway cafe'
 puts '---------------------------------------'
+puts 'Welcome to my virtual takeaway cafe'
 puts Time.now
+puts '---------------------------------------'
 
 
-
-
-
+# Asks customer to provide name and address
 name = prompt.ask("May I have your name?")
-address = prompt.ask("Now, we need your address to deliver your coffee to")
+address = prompt.ask("Now, we need your address to deliver your coffee to\n")
+
+# Asks customer if name and address entered are correct
+Controller.checking_customer_info(name, address)
+
 puts "Thank you for providing your information #{name}"
 
-Customer::CustomerDetails.new(name, address)
-
-
-# Controller.checking_customer_info(name, address)
-
-
-
-
-
-
-
-
-opciones = prompt.select("Choose your destiny?", %w(coffee tea soft drink))
-# =>
-# Choose your destiny? (Use ↑/↓ arrow keys, press Enter to select)
-# ‣ Scorpion
-#   Kano
-#   Jax
+# Creates a customer Object - used later for printing receipt
+customer = Customer::CustomerDetails.new(name, address)
 
 
 
 
 puts 'What would you like to order today?'
-
 
 
 Controller.list_options(Controller::Main_options) # Iterate through the main list of options in Controller module and displays it
