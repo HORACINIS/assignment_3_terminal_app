@@ -5,32 +5,57 @@ require "tty-prompt"
 
 
 module Controller
-    include ItemsCosts
+    include Products
     include Customer
+    prompt = TTY::Prompt.new
     
     Main_options = ['[C]coffee', '[T]tea', '[S]soft drink']
 
-    Coffee_options = ItemsCosts::Coffees
 
-    Tea_options = ItemsCosts::Teas
+    Tea_options = Products::Teas
 
-    Softdrinks_options = ItemsCosts::SoftDrinks
+    Softdrinks_options = Products::SoftDrinks
 
     #Asks the customer if their details are correct
     def Controller.checking_customer_info(customer_name, customer_address)
-    
-        puts "NAME : #{customer_name}"
-        puts "ADDRESS : #{customer_address}" 
-    
-        puts "Is this information correct? - [Y]yes or [N]No"
-        ask_if_details_correct = gets.chomp.downcase
+        prompt = TTY::Prompt.new
+        count = 3
 
-        if ask_if_details_correct == 'yes' || ask_if_details_correct == 'y'
+        puts "YOUR NAME : #{customer_name}"
+        puts "ADDRESS FOR DELIVERY: #{customer_address}"     
+        
 
-        else
+        while count > 0
+            ask_if_details_correct = prompt.yes?("Is this information correct?")
+            if ask_if_details_correct
+                puts "Thank you for providing your information, #{customer_name}"
 
+
+
+                break
+            else
+                count -= 1
+                puts 'Not a problem!'
+                customer_name = prompt.ask("What's your name?") do |q|
+                    q.required true
+                    q.validate /\A\w+\Z/
+                    q.modify   :capitalize
+                end
+                customer_address = prompt.ask("Now, what's your address to deliver your coffee to\n") do |q|
+                    q.required true
+                    q.modify   :capitalize
+                end
+
+                puts "YOUR NAME : #{customer_name}"
+                puts "ADDRESS FOR DELIVERY: #{customer_address}" 
+                ask_if_details_correct = prompt.yes?("Is this information correct?")
+                if ask_if_details_correct
+                    puts "Thank you for providing your information, #{customer_name}"
+        
+                    break
+                end
+            end
         end
-
     end
 
 

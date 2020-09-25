@@ -1,35 +1,59 @@
 require_relative 'controller'
 require_relative 'customer'
-# require "tty-prompt"
+require_relative 'items_costs'
+require "tty-prompt"
 
-include Controller
-include Customer
+module RunApp   
 
-# This a requirement to be able to use the tty prompt feature
-prompt = TTY::Prompt.new
+    include Controller
+    include Customer
+    include Products
 
-puts '---------------------------------------'
-puts 'Welcome to my virtual takeaway cafe'
-puts Time.now
-puts '---------------------------------------'
+    # This a requirement to be able to use the tty prompt feature
+    prompt = TTY::Prompt.new
 
-
-# Asks customer to provide name and address
-name = prompt.ask("May I have your name?")
-address = prompt.ask("Now, we need your address to deliver your coffee to\n")
-
-# Asks customer if name and address entered are correct
-Controller.checking_customer_info(name, address)
-
-puts "Thank you for providing your information #{name}"
-
-# Creates a customer Object - used later for printing receipt
-customer = Customer::CustomerDetails.new(name, address)
+    puts '---------------------------------------'
+    puts 'Welcome to my virtual takeaway cafe'
+    puts Time.now
+    puts '---------------------------------------'
 
 
+    # Asks customer to provide name
+    name = prompt.ask("May I have your name?") do |q|
+        q.required true
+        q.validate /\A\w+\Z/
+        q.modify   :capitalize
+    end
+    # Asks customer to provide address for delivery
+    address = prompt.ask("Now, we need your address to deliver your coffee to\n") do |q|
+        q.required true
+        q.modify   :capitalize
+    end
+
+    # Asks customer if name and address entered are correct nad returns its result
+    checking_customer_details = Controller.checking_customer_info(name, address)
+
+    # Creates a customer Object - used later for printing receipt
+    customer = Customer::CustomerDetails.new(name, address)
 
 
-puts 'What would you like to order today?'
+    # Will print coffee list options
+    coffee_question = prompt.select("What kind of coffee would you like?") do |menu|
+        count = 0
+
+        while count < Products::Coffees.size
+            menu.choice "#{Products::Coffees[count]}"
+        count += 1
+        end
+    end
+
+end
+
+
+
+
+
+
 
 
 Controller.list_options(Controller::Main_options) # Iterate through the main list of options in Controller module and displays it
