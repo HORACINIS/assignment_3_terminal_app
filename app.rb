@@ -1,6 +1,6 @@
 require_relative 'controller'
 require_relative 'customer'
-require_relative 'items_costs'
+require_relative 'products'
 require "tty-prompt"
 
 module RunApp   
@@ -19,7 +19,7 @@ module RunApp
 
 
     # Asks customer to provide name
-    name = prompt.ask("May I have your name?") do |q|
+    name = prompt.ask("May I have your name?\n") do |q|
         q.required true
         q.validate /\A\w+\Z/
         q.modify   :capitalize
@@ -29,12 +29,15 @@ module RunApp
         q.required true
         q.modify   :capitalize
     end
+    # -------------------------------------------------------------------------------
 
-    # Asks customer if name and address entered are correct nad returns its result
-    checking_customer_details = Controller.checking_customer_info(name, address)
+    # Asks customer if name and address entered are correct, returns true or false
+    Controller.checking_customer_info(name, address)
 
     # Creates a customer Object - used later for printing receipt
-    customer = Customer::CustomerDetails.new(name, address)
+    Customer = Customer::CustomerDetails.new(name, address)
+    # puts "Customer's name is #{customer.name}" ESTO SE PUEDE BORRAR
+    # puts "Customer's address is #{customer.address}" ESTO TAMBIEN TOCA BORRAR
 
 
     # Will print coffee list options
@@ -43,9 +46,35 @@ module RunApp
 
         while count < Products::Coffees.size
             menu.choice "#{Products::Coffees[count]}"
-        count += 1
+            count += 1
         end
     end
+
+    # Will print tea list options
+    tea_question = prompt.select("What kind of coffee would you like?") do |menu|
+        count = 0
+
+        while count < Products::Coffees.size
+            menu.choice "#{Products::Teas[count]}"
+            count += 1
+        end
+    end
+
+    # Will print soft drinks list options
+    softdrink_question = prompt.select("What kind of coffee would you like?") do |menu|
+        count = 0
+
+        while count < Products::Coffees.size
+            menu.choice "#{Products::SoftDrinks[count]}"
+            count += 1
+        end
+    end
+
+
+
+
+
+
 
 end
 

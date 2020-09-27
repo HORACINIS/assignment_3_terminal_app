@@ -1,6 +1,9 @@
 module Customer
 
+
     class CustomerDetails
+        attr_reader :name, :address
+        
         @@customers_created = 0
         def initialize(name, address)
             @name = name
@@ -9,11 +12,10 @@ module Customer
         end
         
         def self.created_customers
-            puts "customer created #{@@customers_created}"
+            puts "customers created #{@@customers_created}"
         end
     end
 
-
-
-
 end
+
+
