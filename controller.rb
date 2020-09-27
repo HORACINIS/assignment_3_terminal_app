@@ -1,12 +1,13 @@
 require_relative 'products'
 require_relative 'customer'
-require "tty-prompt"
 # require_relative 'app'
+require "tty-prompt"
 
 
 module Controller
     include Products
     include Customer
+    # include RunApp
     prompt = TTY::Prompt.new
     
     #Asks the customer if their details are correct
@@ -66,8 +67,26 @@ module Controller
     def Controller.ordering_products
         prompt = TTY::Prompt.new
 
-        # Will print coffee list options
-        coffee_question = list_product('What kind of coffee would you like?', Products::Coffees)
+        # Asks to select from main category: coffee, tea or softdrink
+        products_category = list_product('Please make your selection', ['Coffee', 'Tea', 'Soft Drink'])
+        
+        case products_category
+        when 'Coffee'
+            # Will print coffee list options, it will return selected coffee
+            coffee_question = list_product('What kind of coffee would you like?', Products::Coffees)
+            
+            Customer::CustomerDetails.add_to_products_ordered(coffee_question)
+            # puts "Esta wea de producto hay hasta ahora: : : #{Customer::CustomerDetails.printlawea}"
+            
+            prompt.yes?("Would you like to add another coffee?")
+        when 'Tea'
+            puts 'wena, TEA!'
+        when 'Soft Drinks'
+            puts 'wena, SOFT DRINK!'
+        end
+
+        
+
 
         # Will print tea list options
         tea_question = list_product('What kind of tea would you like?', Products::Teas)
