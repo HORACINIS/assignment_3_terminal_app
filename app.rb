@@ -31,7 +31,8 @@ module RunApp
     end
     # -------------------------------------------------------------------------------
 
-    # Asks customer if name and address entered are correct, returns true or false
+    # Asks customer if name and address entered are correct and doesn't go furhter untill 
+    # customer has entered their details correctly
     Controller.checking_customer_info(name, address)
 
     # Creates a customer Object - used later for printing receipt
@@ -39,78 +40,17 @@ module RunApp
     # puts "Customer's name is #{customer.name}" ESTO SE PUEDE BORRAR
     # puts "Customer's address is #{customer.address}" ESTO TAMBIEN TOCA BORRAR
 
-
-    # Will print coffee list options
-    coffee_question = prompt.select("What kind of coffee would you like?") do |menu|
-        count = 0
-
-        while count < Products::Coffees.size
-            menu.choice "#{Products::Coffees[count]}"
-            count += 1
-        end
-    end
-
-    # Will print tea list options
-    tea_question = prompt.select("What kind of coffee would you like?") do |menu|
-        count = 0
-
-        while count < Products::Coffees.size
-            menu.choice "#{Products::Teas[count]}"
-            count += 1
-        end
-    end
-
-    # Will print soft drinks list options
-    softdrink_question = prompt.select("What kind of coffee would you like?") do |menu|
-        count = 0
-
-        while count < Products::Coffees.size
-            menu.choice "#{Products::SoftDrinks[count]}"
-            count += 1
-        end
-    end
-
-
-
-
-
-
-
-end
-
-
-
-
-
-
-
-
-Controller.list_options(Controller::Main_options) # Iterate through the main list of options in Controller module and displays it
-
-main_input = gets.chomp.downcase #coffee, tea, soft drink input from customer
-
-
-
-if main_input == 'coffee' || main_input == 'c'
-
-    puts '-----------COFFEES----------------'
-    Controller.list_options(Controller::Coffee_options) #iterates and prints constant array Coffee_options from Controller module 
     
-elsif main_input == 'tea' || main_input == 't'
+    Controller.ordering_products
+    
 
-    puts '-------------TEAS-----------------'
-    Controller.list_options(Controller::Tea_options) #iterates and prints constant array Tea_options from Controller module 
 
-elsif main_input == 'soft drink' || main_input == 's'
-    puts '----------SOFT DREANKS--------'
-    Controller.list_options(Controller::Softdrinks_options)
-else
-    puts 'Wrong Input'
+
+
+
+
+
 end
-
-
-
-
 
 
 

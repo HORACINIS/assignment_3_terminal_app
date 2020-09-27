@@ -45,7 +45,36 @@ module Controller
             puts "Thank you for providing your information, #{customer_name}"
         end    
     end
-   
+
+
+
+    def Controller.list_product(question, product)
+        prompt = TTY::Prompt.new
+
+        prompt.select(question) do |menu|
+            count = 0
+    
+            while count < product.size
+                menu.choice "#{product[count]}"
+                count += 1
+            end
+        end
+    end
+
+
+
+    def Controller.ordering_products
+        prompt = TTY::Prompt.new
+
+        # Will print coffee list options
+        coffee_question = list_product('What kind of coffee would you like?', Products::Coffees)
+
+        # Will print tea list options
+        tea_question = list_product('What kind of tea would you like?', Products::Teas)
+
+        # Will print soft drinks list options
+        softdrink_question = list_product('What kind of coffee would you like?', Products::SoftDrinks)
+    end
 
 
 
