@@ -2,6 +2,7 @@ require_relative 'controller'
 require_relative 'customer'
 require_relative 'products'
 require "tty-prompt"
+require 'colorize'
 
 module RunApp   
 
@@ -38,6 +39,17 @@ module RunApp
 
     # Runs ordering process
     Controller.ordering_products
+
+
+
+    sleep(5)
+
+    "..............................".each_char do |c|
+        sleep 0.1
+        print c
+    end
+
+    system('clear')
 
     # Testing
     puts "This is the customer's name #{Customer_info.name}"
