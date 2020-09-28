@@ -11,12 +11,7 @@ module Controller
     # include RunApp
     prompt = TTY::Prompt.new
 
-
-    # Prints main logo and current time and date
-    def Controller.intro
-        puts '---------------------------------------------------------------------------------'
-        puts ' ┌( ಠ_ಠ)┘ ┌( ಠ_ಠ)┘ ┌( ಠ_ಠ)┘ ┌( ಠ_ಠ)┘ ┌( ಠ_ಠ)┘ ┌( ಠ_ಠ)┘ ┌( ಠ_ಠ)┘ ┌( ಠ_ಠ)┘ ┌( ಠ_ಠ)┘'.colorize(:red)
-        intro_logo = 
+    Logo = 
         '
         ██╗  ██╗ ██████╗ ██████╗  █████╗  ██████╗██╗███╗   ██╗██╗███████╗       
         ██║  ██║██╔═══██╗██╔══██╗██╔══██╗██╔════╝██║████╗  ██║██║██╔════╝       
@@ -30,8 +25,15 @@ module Controller
         ██║     ██╔══██║██╔══╝  ██╔══╝                                          
         ╚██████╗██║  ██║██║     ███████╗                                        
          ╚═════╝╚═╝  ╚═╝╚═╝     ╚══════╝                                        '
-         .colorize(:red).on_blue.underline                                                                          
-        intro_logo.each_char do |character|
+
+
+    # Prints main logo and current time and date
+    def Controller.intro(logo)
+        puts '---------------------------------------------------------------------------------'
+        puts ' ┌( ಠ_ಠ)┘ ┌( ಠ_ಠ)┘ ┌( ಠ_ಠ)┘ ┌( ಠ_ಠ)┘ ┌( ಠ_ಠ)┘ ┌( ಠ_ಠ)┘ ┌( ಠ_ಠ)┘ ┌( ಠ_ಠ)┘ ┌( ಠ_ಠ)┘'.colorize(:red)
+        main_logo = logo.colorize(:red).on_blue.underline  
+                                                                                
+        main_logo.each_char do |character|
             sleep 0.001
             print character
         end
@@ -54,10 +56,16 @@ module Controller
         ask_if_details_correct = prompt.yes?("Is this information correct?")
         
         if ask_if_details_correct
+            system('clear')
+            puts Logo.colorize(:light_blue ).colorize( :background => :red)
+            
+            sleep(1)
             
             puts "Thank you for providing your information, #{customer_name}!"
 
         else
+            system('clear')
+            puts Logo.colorize(:light_blue ).colorize( :background => :red)
 
             loop do
                 puts 'Not a problem!'
@@ -76,7 +84,8 @@ module Controller
                 ask_if_details_correct = prompt.yes?("Is this information correct?")
                 
             break if ask_if_details_correct
-
+            system('clear')
+            puts Logo.colorize(:light_blue ).colorize( :background => :red)
             end
             
             puts "Thank you for providing your information, #{customer_name}"
@@ -137,6 +146,11 @@ module Controller
 
         end            
     end
+
+
+    
+
+
 
     # puts "This is the customer's name #{RunApp::Customer.name}"
 

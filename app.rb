@@ -14,7 +14,7 @@ module RunApp
     prompt = TTY::Prompt.new
 
     # Shows intro logo and time
-    Controller.intro
+    Controller.intro(Controller::Logo)
 
 
     sleep(0.5)
@@ -30,7 +30,7 @@ module RunApp
         q.required true
         q.modify   :capitalize
     end
-    
+
     # -------------------------------------------------------------------------------
 
     # Asks customer if name and address entered are correct and doesn't go furhter untill 
@@ -65,7 +65,7 @@ module RunApp
     system('clear')
 
     # Testing
-    Controller.intro
+    Controller.intro(Controller::Logo)
     puts "This is the customer's name #{Customer_info.name}"
     puts "These are the coffees #{Customer_info.coffees}"
     puts "These are the teas #{Customer_info.teas}"
