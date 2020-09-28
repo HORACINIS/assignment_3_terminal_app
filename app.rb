@@ -41,7 +41,10 @@ module RunApp
 
     # Testing
     puts "This is the customer's name #{Customer_info.name}"
-
+    puts "These are the coffees #{Customer_info.coffees}"
+    puts "These are the teas #{Customer_info.teas}"
+    puts "These are the softdrinks #{Customer_info.soft_drinks}"
+    puts "This is the total #{Customer_info.receipt}"
 
 
 
@@ -49,6 +52,17 @@ module RunApp
 
 
 end
+
+
+
+
+
+
+
+
+
+
+
 
 
 

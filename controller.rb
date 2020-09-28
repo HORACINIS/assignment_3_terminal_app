@@ -36,7 +36,6 @@ module Controller
     # Asks the customer if their details are correct
     def Controller.checking_customer_info(customer_name, customer_address)
         prompt = TTY::Prompt.new
-        # count
 
         puts "YOUR NAME : #{customer_name}"
         puts "ADDRESS FOR DELIVERY: #{customer_address}"     
@@ -44,6 +43,7 @@ module Controller
         ask_if_details_correct = prompt.yes?("Is this information correct?")
         
         if ask_if_details_correct
+            
             puts "Thank you for providing your information, #{customer_name}!"
 
         else
@@ -63,9 +63,11 @@ module Controller
                 end
 
                 ask_if_details_correct = prompt.yes?("Is this information correct?")
+                
             break if ask_if_details_correct
 
             end
+            
             puts "Thank you for providing your information, #{customer_name}"
         end    
     end
@@ -86,9 +88,6 @@ module Controller
     end
 
     
-
-
-    
     def Controller.ordering_products
         prompt = TTY::Prompt.new
 
@@ -101,26 +100,27 @@ module Controller
                 # Will print coffee list options, it will return selected coffee
                 coffee_question = list_product('What kind of coffee would you like?', Products::Coffees)
                 # Adds product(coffee) to products array in CustomerDetails Class
-                RunApp::Customer_info.add_product(coffee_question)
+                RunApp::Customer_info.add_to_coffee_list(coffee_question)
                 
 
             when 'Tea'
                 # Will print tea list options
                 tea_question = list_product('What kind of tea would you like?', Products::Teas)
                 # Adds product(tea) to products array in CustomerDetails Class
-                RunApp::Customer_info.add_product(tea_question)
+                RunApp::Customer_info.add_to_tea_list(tea_question)
 
             when 'Soft Drink'
                 # Will print soft drinks list options
                 softdrink_question = list_product('What kind of soft drink would you like?', Products::SoftDrinks)
                 # Adds product(soft drink) to products array in CustomerDetails Class
-                RunApp::Customer_info.add_product(softdrink_question)
+                RunApp::Customer_info.add_to_softdrink_list(softdrink_question)
 
             end
 
-            #Asks
+            
             add_anything_else = prompt.yes?("Would you like to add anything else?")
 
+            # Break if add_anything_else question returns false
             break if !add_anything_else
 
         end            
@@ -133,8 +133,3 @@ module Controller
 
 
 end
-
-
-
-
-
