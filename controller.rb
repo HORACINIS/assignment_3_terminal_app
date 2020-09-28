@@ -15,7 +15,7 @@ module Controller
     # Prints main logo and current time and date
     def Controller.intro
         puts '---------------------------------------------------------------------------------'
-        puts ' ┌( ಠ_ಠ)┘ ┌( ಠ_ಠ)┘ ┌( ಠ_ಠ)┘ ┌( ಠ_ಠ)┘ ┌( ಠ_ಠ)┘ ┌( ಠ_ಠ)┘ ┌( ಠ_ಠ)┘ ┌( ಠ_ಠ)┘'
+        puts ' ┌( ಠ_ಠ)┘ ┌( ಠ_ಠ)┘ ┌( ಠ_ಠ)┘ ┌( ಠ_ಠ)┘ ┌( ಠ_ಠ)┘ ┌( ಠ_ಠ)┘ ┌( ಠ_ಠ)┘ ┌( ಠ_ಠ)┘ ┌( ಠ_ಠ)┘'.colorize(:red)
         intro_logo = 
         '
         ██╗  ██╗ ██████╗ ██████╗  █████╗  ██████╗██╗███╗   ██╗██╗███████╗       
@@ -30,17 +30,18 @@ module Controller
         ██║     ██╔══██║██╔══╝  ██╔══╝                                          
         ╚██████╗██║  ██║██║     ███████╗                                        
          ╚═════╝╚═╝  ╚═╝╚═╝     ╚══════╝                                        '
-         .colorize(:color => :light_blue, :background => :red)                                                                             
+         .colorize(:red).on_blue.underline                                                                          
         intro_logo.each_char do |character|
             sleep 0.001
             print character
         end
         puts ''
 
-        puts ' ┌( ಠ_ಠ)┘ ┌( ಠ_ಠ)┘ ┌( ಠ_ಠ)┘ ┌( ಠ_ಠ)┘ ┌( ಠ_ಠ)┘ ┌( ಠ_ಠ)┘ ┌( ಠ_ಠ)┘ ┌( ಠ_ಠ)┘'
+        puts ' ┌( ಠ_ಠ)┘ ┌( ಠ_ಠ)┘ ┌( ಠ_ಠ)┘ ┌( ಠ_ಠ)┘ ┌( ಠ_ಠ)┘ ┌( ಠ_ಠ)┘ ┌( ಠ_ಠ)┘ ┌( ಠ_ಠ)┘ ┌( ಠ_ಠ)┘'.colorize(:red)
         
         puts '---------------------------------------------------------------------------------'
-        puts Time.now
+        puts "          ▌│║▌║▌│║║▌█║▌║█' #{Time.now} ▌│║▌║▌│║║▌█║▌║█"
+        # Add a welcome beauty thingy
     end
     
     # Asks the customer if their details are correct
@@ -103,10 +104,11 @@ module Controller
 
         loop do
             # Asks to select from main category: coffee, tea or softdrink
-            products_category = list_product('Please make your selection', ['Coffee', 'Tea', 'Soft Drink'])
+            products_category = list_product('Please make your selection▄▀▄▀▄▀', ['Coffee', 'Tea', 'Soft Drink'])
 
             case products_category
             when 'Coffee'
+                puts 
                 # Will print coffee list options, it will return selected coffee
                 coffee_question = list_product('What kind of coffee would you like?', Products::Coffees)
                 # Adds product(coffee) to products array in CustomerDetails Class

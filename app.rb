@@ -17,17 +17,20 @@ module RunApp
     Controller.intro
 
 
+    sleep(0.5)
     # Asks customer to provide name
     name = prompt.ask("May I have your name?\n") do |q|
         q.required true
         q.validate /\A\w+\Z/
         q.modify   :capitalize
     end
+    sleep(0.5)
     # Asks customer to provide address for delivery
     address = prompt.ask("Now, we need your address to deliver your coffee to\n") do |q|
         q.required true
         q.modify   :capitalize
     end
+    
     # -------------------------------------------------------------------------------
 
     # Asks customer if name and address entered are correct and doesn't go furhter untill 
@@ -42,16 +45,27 @@ module RunApp
 
 
 
-    sleep(5)
+
+
+
+
+
+
+    # FROM THIS POINT ONLY
+    # I NEED TO BE ABLE TO PRINT THE RECEIPT...
+    
 
     "..............................".each_char do |c|
         sleep 0.1
         print c
     end
 
+    sleep(5)
+
     system('clear')
 
     # Testing
+    Controller.intro
     puts "This is the customer's name #{Customer_info.name}"
     puts "These are the coffees #{Customer_info.coffees}"
     puts "These are the teas #{Customer_info.teas}"
