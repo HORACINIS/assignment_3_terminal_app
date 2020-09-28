@@ -12,10 +12,8 @@ module RunApp
     # This a requirement to be able to use the tty prompt feature
     prompt = TTY::Prompt.new
 
-    puts '---------------------------------------'
-    puts 'Welcome to my virtual takeaway cafe'
-    puts Time.now
-    puts '---------------------------------------'
+    # Shows intro logo and time
+    Controller.intro
 
 
     # Asks customer to provide name
@@ -36,13 +34,13 @@ module RunApp
     Controller.checking_customer_info(name, address)
 
     # Creates a customer Object - used later for printing receipt
-    Customer = Customer::CustomerDetails.new(name, address)
-    # puts "Customer's name is #{customer.name}" ESTO SE PUEDE BORRAR
-    # puts "Customer's address is #{customer.address}" ESTO TAMBIEN TOCA BORRAR
+    Customer_info = Customer::CustomerDetails.new(name, address)
 
-    
+    # Runs ordering process
     Controller.ordering_products
-    
+
+    # Testing
+    puts "This is the customer's name #{Customer_info.name}"
 
 
 

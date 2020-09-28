@@ -9,8 +9,31 @@ module Controller
     include Customer
     # include RunApp
     prompt = TTY::Prompt.new
+
+
+    # Prints main logo and current time and date
+    def Controller.intro
+        intro = ' 
+        ██╗  ██╗ ██████╗ ██████╗  █████╗  ██████╗██╗███╗   ██╗██╗███████╗
+        ██║  ██║██╔═══██╗██╔══██╗██╔══██╗██╔════╝██║████╗  ██║██║██╔════╝
+        ███████║██║   ██║██████╔╝███████║██║     ██║██╔██╗ ██║██║███████╗
+        ██╔══██║██║   ██║██╔══██╗██╔══██║██║     ██║██║╚██╗██║██║╚════██║
+        ██║  ██║╚██████╔╝██║  ██║██║  ██║╚██████╗██║██║ ╚████║██║███████║
+        ╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝╚═╝╚═╝  ╚═══╝╚═╝╚══════╝
+        ██████╗ █████╗ ███████╗███████╗
+        ██╔════╝██╔══██╗██╔════╝██╔════╝
+        ██║     ███████║█████╗  █████╗
+        ██║     ██╔══██║██╔══╝  ██╔══╝
+        ╚██████╗██║  ██║██║     ███████╗
+         ╚═════╝╚═╝  ╚═╝╚═╝     ╚══════╝
+          ┌( ಠ_ಠ)┘ ┌( ಠ_ಠ)┘ ┌( ಠ_ಠ)┘ ┌( ಠ_ಠ)┘ ┌( ಠ_ಠ)┘ ┌( ಠ_ಠ)┘ ┌( ಠ_ಠ)┘'                                                                               
+        puts intro
+        
+        puts '---------------------------------------------------------------------------------'
+        puts Time.now
+    end
     
-    #Asks the customer if their details are correct
+    # Asks the customer if their details are correct
     def Controller.checking_customer_info(customer_name, customer_address)
         prompt = TTY::Prompt.new
         # count
@@ -48,7 +71,7 @@ module Controller
     end
 
 
-
+    # Loops through product list given
     def Controller.list_product(question, product)
         prompt = TTY::Prompt.new
 
@@ -62,39 +85,48 @@ module Controller
         end
     end
 
+    
 
 
+    
     def Controller.ordering_products
         prompt = TTY::Prompt.new
 
-        # Asks to select from main category: coffee, tea or softdrink
-        products_category = list_product('Please make your selection', ['Coffee', 'Tea', 'Soft Drink'])
-        
-        case products_category
-        when 'Coffee'
-            # Will print coffee list options, it will return selected coffee
-            coffee_question = list_product('What kind of coffee would you like?', Products::Coffees)
-            
-            Customer::CustomerDetails.add_to_products_ordered(coffee_question)
-            # puts "Esta wea de producto hay hasta ahora: : : #{Customer::CustomerDetails.printlawea}"
-            
-            prompt.yes?("Would you like to add another coffee?")
-        when 'Tea'
-            puts 'wena, TEA!'
-        when 'Soft Drinks'
-            puts 'wena, SOFT DRINK!'
-        end
+        loop do
+            # Asks to select from main category: coffee, tea or softdrink
+            products_category = list_product('Please make your selection', ['Coffee', 'Tea', 'Soft Drink'])
 
-        
+            case products_category
+            when 'Coffee'
+                # Will print coffee list options, it will return selected coffee
+                coffee_question = list_product('What kind of coffee would you like?', Products::Coffees)
+                # Adds product(coffee) to products array in CustomerDetails Class
+                RunApp::Customer_info.add_product(coffee_question)
+                
 
+            when 'Tea'
+                # Will print tea list options
+                tea_question = list_product('What kind of tea would you like?', Products::Teas)
+                # Adds product(tea) to products array in CustomerDetails Class
+                RunApp::Customer_info.add_product(tea_question)
 
-        # Will print tea list options
-        tea_question = list_product('What kind of tea would you like?', Products::Teas)
+            when 'Soft Drink'
+                # Will print soft drinks list options
+                softdrink_question = list_product('What kind of soft drink would you like?', Products::SoftDrinks)
+                # Adds product(soft drink) to products array in CustomerDetails Class
+                RunApp::Customer_info.add_product(softdrink_question)
 
-        # Will print soft drinks list options
-        softdrink_question = list_product('What kind of coffee would you like?', Products::SoftDrinks)
+            end
+
+            #Asks
+            add_anything_else = prompt.yes?("Would you like to add anything else?")
+
+            break if !add_anything_else
+
+        end            
     end
 
+    # puts "This is the customer's name #{RunApp::Customer.name}"
 
 
 
