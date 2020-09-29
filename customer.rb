@@ -5,7 +5,7 @@ module Customer
 
 
     class CustomerDetails
-        attr_accessor :name, :address, :products, :coffees, :teas, :soft_drinks, :total
+        attr_accessor :name, :address, :coffees, :teas, :soft_drinks, :total
         
         def initialize(name, address)
             @name = name
@@ -34,7 +34,7 @@ module Customer
         def add_to_tea_list(tea)
             price = 0
             case tea
-            when 'English Breakfast'
+            when 'Eng Breakfast'
                 price = 4.20
             else
                 price = 3.80
@@ -49,7 +49,7 @@ module Customer
                 price = 2.40
             when 'Redbull'
                 price = 5.00
-            when 'Sparkling water'
+            when 'Mineral water'
                 price = 4.00
             when 'Fresh OJ'
                 price = 6.90
@@ -74,7 +74,7 @@ module Customer
                 @coffees.each {|coffee, cost| puts "                   #{coffee} ................. $ #{cost}"}
             end
             if !@teas.empty?
-                @coffees.each {|tea, cost| puts "                   #{tea} ................. $ #{cost}"}
+                @teas.each {|tea, cost| puts "                   #{tea} ................. $ #{cost}"}
             end
             if !@soft_drinks.empty?
                 @soft_drinks.each {|soft_drink, cost| puts "                   #{soft_drink} ................. $ #{cost}"}
@@ -92,8 +92,7 @@ module Customer
 
 
     end
-
-
+    
 
 end
 

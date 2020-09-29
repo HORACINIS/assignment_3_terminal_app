@@ -50,18 +50,29 @@ module Controller
 
         sleep(0.5)
 
-        puts "YOUR NAME : #{customer_name}"
-        puts "ADDRESS FOR DELIVERY: #{customer_address}"     
+        puts "YOUR NAME : #{customer_name.colorize(:light_red)}"
+        puts "ADDRESS FOR DELIVERY: #{customer_address.colorize(:light_red)}"     
 
-        ask_if_details_correct = prompt.yes?("Is this information correct?")
+        ask_if_details_correct = prompt.yes?("Is this information correct?".colorize(:red))
         
         if ask_if_details_correct
             system('clear')
             puts Logo.colorize(:light_blue ).colorize( :background => :red)
             
+            # Loading effect
             sleep(1)
+            
+            print 'Checking info '
+            ".................................".each_char do |c|
+                sleep 0.1
+                print c
+            end
+            print ' OK!'.colorize(:light_green)
+            sleep(1)
+
             puts ''
-            puts "Thank you for providing your information, #{customer_name}!"
+            puts "Thank you for providing your information, #{customer_name.colorize(:light_yellow)}!"
+            
             sleep(0.5)
 
         else
@@ -71,10 +82,10 @@ module Controller
             loop do
                 puts ''
                 sleep(0.5)
-                puts 'Not a problem!'
+                puts 'Not a problem!'.colorize(:red)
                 puts ''
 
-                customer_name = prompt.ask("Your name?\n") do |q|
+                customer_name = prompt.ask("Your name?\n".colorize(:light_blue)) do |q|
                     q.required true
                     q.validate /\A\w+\Z/
                     q.modify   :capitalize
@@ -82,7 +93,7 @@ module Controller
 
                 sleep(0.5)
     
-                customer_address = prompt.ask("Now, your address?\n") do |q|
+                customer_address = prompt.ask("Now, your address?\n".colorize(:light_blue)) do |q|
                     q.required true
                     q.modify   :capitalize
                 end
@@ -91,12 +102,12 @@ module Controller
 
                 sleep(0.5)
 
-                puts "YOUR NAME : #{customer_name}"
-                puts "ADDRESS FOR DELIVERY: #{customer_address}"  
+                puts "YOUR NAME : #{customer_name.colorize(:light_red)}"
+                puts "ADDRESS FOR DELIVERY: #{customer_address.colorize(:light_red)}"  
 
                 sleep(0.5)
 
-                ask_if_details_correct = prompt.yes?("Is this information correct?")
+                ask_if_details_correct = prompt.yes?("Is this information correct?".colorize(:red))
                 
             break if ask_if_details_correct
             sleep(0.5)
@@ -109,8 +120,19 @@ module Controller
             system('clear')
             puts ''
             puts Logo.colorize(:light_blue ).colorize( :background => :red)
-            puts "Thank you for providing your information, #{customer_name}"
+            sleep(1)
+            
+            # Loading effect
+            print 'Checking info '.colorize(:light_green)
+            ".................................".each_char do |c|
+                sleep 0.1
+                print c
+            end
+            print ' OK!'.colorize(:light_green)
+            sleep(0.5)
             puts ''
+            puts "Thank you for providing your information, #{customer_name.colorize(:light_yellow)}!"
+            sleep(0.8)            
         end    
     end
 
@@ -137,7 +159,7 @@ module Controller
             puts ''
             sleep(0.8)
             # Asks to select from main category: coffee, tea or softdrink
-            products_category = list_product('Please make your selection▄▀▄▀▄▀', ['Coffee', 'Tea', 'Soft Drink'])
+            products_category = list_product('Please make your selection ▄▀▄▀▄▀'.colorize(:light_blue), ['Coffee', 'Tea', 'Soft Drink'])
             
             case products_category
             when 'Coffee'
@@ -186,35 +208,28 @@ module Controller
         puts ''
 
 
-        print 'Sending Order '
+        print 'Sending Order '.colorize(:light_green)
         "....................................".each_char do |c|
             sleep 0.2
             print c
         end
-        print 'OK!'
+        print ' OK!'.colorize(:green)
 
         sleep(1)
 
         puts ''
 
-        print 'Generating Receipt '
-        ".................................".each_char do |c|
+        print 'Generating Receipt '.colorize(:green)
+        "...............................".each_char do |c|
             sleep 0.1
             print c
         end
-        print 'OK!'
+        print ' OK!'.colorize(:light_green)
 
         sleep(2)
 
         system('clear')
 
     end
-
     
-
-    
-
-
-
-
 end

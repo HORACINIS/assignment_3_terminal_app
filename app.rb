@@ -18,16 +18,16 @@ module RunApp
 
     sleep(0.5)
     puts ''
-    
+
     # Asks customer to provide name
-    name = prompt.ask("May I have your name?\n") do |q|
+    name = prompt.ask("May I have your name?\n".colorize(:light_blue)) do |q|
         q.required true
         q.validate /\A\w+\Z/
         q.modify   :capitalize
     end
     sleep(0.5)
     # Asks customer to provide address for delivery
-    address = prompt.ask("Now, we need your address to deliver your coffee to\n") do |q|
+    address = prompt.ask("Now, we need your address to deliver your coffee to\n".colorize(:light_blue)) do |q|
         q.required true
         q.modify   :capitalize
     end
@@ -43,12 +43,12 @@ module RunApp
     Customer_info = Customer::CustomerDetails.new(name, address)
 
     # Runs ordering process
-    Controller.ordering_products
+    Controller.ordering_products    
 
     # Simulationg loading effects
     Controller.loading_effects
 
-    # Generates and prints customer's receipt
+    # Generates and prints customer's receipt    
     Customer_info.receipt
 
     sleep(5)
