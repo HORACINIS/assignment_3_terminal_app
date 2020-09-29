@@ -66,9 +66,20 @@ module Customer
             Controller.intro(Controller::Logo)
             puts '          ▌║█║▌│║▌│║▌║▌█║       R E C E I P T       ▌│║▌║▌│║║▌█║▌║█'
             puts ''
+            puts "
+                                    )  (
+                                    (   ) )
+                                     ) ( (
+                                   _______)_
+                                .-'---------|  
+                               ( C| ////////|
+                                '-.///H C///|
+                                  '_________'
+                                   '-------'
+            "
+            puts ''
             puts '          -----------------------ITEMS ORDERED --------------------'
             puts ''
-
             
             if !@coffees.empty?
                 @coffees.each {|coffee, cost| puts "                   #{coffee} ................. $ #{cost}"}
