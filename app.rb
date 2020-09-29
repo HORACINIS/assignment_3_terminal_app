@@ -16,8 +16,9 @@ module RunApp
     # Shows intro logo and time
     Controller.intro(Controller::Logo)
 
-
     sleep(0.5)
+    puts ''
+    
     # Asks customer to provide name
     name = prompt.ask("May I have your name?\n") do |q|
         q.required true
@@ -30,6 +31,7 @@ module RunApp
         q.required true
         q.modify   :capitalize
     end
+    puts ''
 
     # -------------------------------------------------------------------------------
 
@@ -43,40 +45,14 @@ module RunApp
     # Runs ordering process
     Controller.ordering_products
 
+    # Simulationg loading effects
+    Controller.loading_effects
 
-
-
-
-
-
-    # FROM THIS POINT ONLY
-    # I NEED TO BE ABLE TO PRINT THE RECEIPT...
-    
-
-    "..............................".each_char do |c|
-        sleep 0.1
-        print c
-    end
-
-    sleep(5)
-
-    system('clear')
-
+    # Generates and prints customer's receipt
     Customer_info.receipt
 
-    # Testing
-    # Controller.intro(Controller::Logo)
-    # puts "This is the customer's name #{Customer_info.name}"
-    # puts "These are the coffees #{Customer_info.coffees}"
-    # puts "These are the teas #{Customer_info.teas}"
-    # puts "These are the softdrinks #{Customer_info.soft_drinks}"
-    # puts "This is the total #{Customer_info.receipt}"
-
-
-
-
-
-
+    sleep(5)
+    
 end
 
 

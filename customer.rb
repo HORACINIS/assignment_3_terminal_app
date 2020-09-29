@@ -69,15 +69,15 @@ module Customer
             puts '          -----------------------ITEMS ORDERED --------------------'
             puts ''
 
-            #UP TO HERE
+            
             if !@coffees.empty?
-                @coffees.each {|coffee, cost| puts "                   #{coffee} ................. $#{cost}"}
+                @coffees.each {|coffee, cost| puts "                   #{coffee} ................. $ #{cost}"}
             end
             if !@teas.empty?
-                @coffees.each {|tea, cost| puts "                   #{tea} ................. $#{cost}"}
+                @coffees.each {|tea, cost| puts "                   #{tea} ................. $ #{cost}"}
             end
             if !@soft_drinks.empty?
-                @soft_drinks.each {|soft_drink, cost| puts "                   #{soft_drink} ................. $#{cost}"}
+                @soft_drinks.each {|soft_drink, cost| puts "                   #{soft_drink} ................. $ #{cost}"}
             end
 
             puts ''
