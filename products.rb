@@ -10,7 +10,7 @@ module Products
     ]
 
     Teas = [
-        'English Breakfast', 
+        'Eng Breakfast', 
         'Chamomile', 
         'Peppermint'
     ]
@@ -18,7 +18,7 @@ module Products
     SoftDrinks = [
         'Coke', 
         'Redbull', 
-        'Sparkling water', 
+        'Mineral water', 
         'Fresh OJ'
     ]
 

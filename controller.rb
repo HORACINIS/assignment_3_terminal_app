@@ -42,7 +42,7 @@ module Controller
         puts ' ┌( ಠ_ಠ)┘ ┌( ಠ_ಠ)┘ ┌( ಠ_ಠ)┘ ┌( ಠ_ಠ)┘ ┌( ಠ_ಠ)┘ ┌( ಠ_ಠ)┘ ┌( ಠ_ಠ)┘ ┌( ಠ_ಠ)┘ ┌( ಠ_ಠ)┘'.colorize(:red)
         
         puts '---------------------------------------------------------------------------------'
-        puts "          ▌│║▌║▌│║║▌█║▌║█' #{Time.now} ▌│║▌║▌│║║▌█║▌║█"
+        puts "          ▌│║▌║▌│║║▌█║▌║█ #{Time.now} ▌│║▌║▌│║║▌█║▌║█"
         # Add a welcome beauty thingy
     end
     
@@ -80,6 +80,9 @@ module Controller
                     q.required true
                     q.modify   :capitalize
                 end
+
+                puts "YOUR NAME : #{customer_name}"
+                puts "ADDRESS FOR DELIVERY: #{customer_address}"  
 
                 ask_if_details_correct = prompt.yes?("Is this information correct?")
                 

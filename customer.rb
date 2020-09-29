@@ -7,8 +7,6 @@ module Customer
     class CustomerDetails
         attr_accessor :name, :address, :products, :coffees, :teas, :soft_drinks, :total
         
-        # @@customers_created = 0
-        # @@products_ordered = []
         def initialize(name, address)
             @name = name
             @address = address
@@ -64,11 +62,31 @@ module Customer
 
 
         def receipt
+            # prints main logo
             Controller.intro(Controller::Logo)
+            puts '          ▌║█║▌│║▌│║▌║▌█║       R E C E I P T       ▌│║▌║▌│║║▌█║▌║█'
+            puts ''
+            puts '          -----------------------ITEMS ORDERED --------------------'
+            puts ''
 
-            puts '------------------------'
-            puts '------Items ordered------'
-            puts "The total amount is ::: $#{@total}"
+            #UP TO HERE
+            if !@coffees.empty?
+                @coffees.each {|coffee, cost| puts "                   #{coffee} ................. $#{cost}"}
+            end
+            if !@teas.empty?
+                @coffees.each {|tea, cost| puts "                   #{tea} ................. $#{cost}"}
+            end
+            if !@soft_drinks.empty?
+                @soft_drinks.each {|soft_drink, cost| puts "                   #{soft_drink} ................. $#{cost}"}
+            end
+
+            puts ''
+            puts '         #########################################################'
+            puts ''
+            puts "                         ::: TOTAL AMOUNT  $ #{@total} :::"
+
+            puts '          ▌║█║▌│║▌│║▌║▌█║▌│║▌║▌│║║▌█║▌║█▌║█║▌│║║█▌║█▌│║▌║▌│║║▌█║▌║█'
+            puts '          ▌║█║▌│║▌│║▌║▌█║       R E C E I P T       ▌│║▌║▌│║║▌█║▌║█'
 
         end
 
