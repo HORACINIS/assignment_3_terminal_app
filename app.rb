@@ -49,8 +49,6 @@ module RunApp
 
 
 
-
-
     # FROM THIS POINT ONLY
     # I NEED TO BE ABLE TO PRINT THE RECEIPT...
     
@@ -64,13 +62,15 @@ module RunApp
 
     system('clear')
 
+    Customer_info.receipt
+
     # Testing
-    Controller.intro(Controller::Logo)
-    puts "This is the customer's name #{Customer_info.name}"
-    puts "These are the coffees #{Customer_info.coffees}"
-    puts "These are the teas #{Customer_info.teas}"
-    puts "These are the softdrinks #{Customer_info.soft_drinks}"
-    puts "This is the total #{Customer_info.receipt}"
+    # Controller.intro(Controller::Logo)
+    # puts "This is the customer's name #{Customer_info.name}"
+    # puts "These are the coffees #{Customer_info.coffees}"
+    # puts "These are the teas #{Customer_info.teas}"
+    # puts "These are the softdrinks #{Customer_info.soft_drinks}"
+    # puts "This is the total #{Customer_info.receipt}"
 
 
 

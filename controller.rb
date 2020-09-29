@@ -32,7 +32,7 @@ module Controller
         puts '---------------------------------------------------------------------------------'
         puts ' ┌( ಠ_ಠ)┘ ┌( ಠ_ಠ)┘ ┌( ಠ_ಠ)┘ ┌( ಠ_ಠ)┘ ┌( ಠ_ಠ)┘ ┌( ಠ_ಠ)┘ ┌( ಠ_ಠ)┘ ┌( ಠ_ಠ)┘ ┌( ಠ_ಠ)┘'.colorize(:red)
         main_logo = logo.colorize(:red).on_blue.underline  
-                                                                                
+        
         main_logo.each_char do |character|
             sleep 0.001
             print character
@@ -88,6 +88,8 @@ module Controller
             puts Logo.colorize(:light_blue ).colorize( :background => :red)
             end
             
+            system('clear')
+            puts Logo.colorize(:light_blue ).colorize( :background => :red)
             puts "Thank you for providing your information, #{customer_name}"
         end    
     end
@@ -99,7 +101,7 @@ module Controller
 
         prompt.select(question) do |menu|
             count = 0
-    
+            
             while count < product.size
                 menu.choice "#{product[count]}"
                 count += 1
@@ -114,7 +116,7 @@ module Controller
         loop do
             # Asks to select from main category: coffee, tea or softdrink
             products_category = list_product('Please make your selection▄▀▄▀▄▀', ['Coffee', 'Tea', 'Soft Drink'])
-
+            
             case products_category
             when 'Coffee'
                 puts 
@@ -123,7 +125,6 @@ module Controller
                 # Adds product(coffee) to products array in CustomerDetails Class
                 RunApp::Customer_info.add_to_coffee_list(coffee_question)
                 
-
             when 'Tea'
                 # Will print tea list options
                 tea_question = list_product('What kind of tea would you like?', Products::Teas)
@@ -147,15 +148,6 @@ module Controller
         end            
     end
 
-
-    
-
-
-
     # puts "This is the customer's name #{RunApp::Customer.name}"
-
-
-
-
 
 end

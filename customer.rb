@@ -64,7 +64,7 @@ module Customer
 
 
         def receipt
-
+            Controller.intro(Controller::Logo)
 
             puts '------------------------'
             puts '------Items ordered------'
