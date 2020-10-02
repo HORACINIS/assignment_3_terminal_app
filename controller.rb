@@ -1,7 +1,8 @@
 require_relative 'products'
 require_relative 'customer'
-require "tty-prompt"
-require 'colorize'
+require "tty-prompt" # tty-prompt gem
+require 'colorize' # colorize gem for changing colours for Strings
+require 'artii' # artii gem for ASCII  art
 
 
 module Controller
@@ -55,6 +56,9 @@ module Controller
 
         ask_if_details_correct = prompt.yes?("Is this information correct?".colorize(:red))
         
+        # Asks customer if details entered by them are correct, if customer says no then it will 
+        # go into a loop and will ask customer to enter details again then will ask if details entered 
+        # are correct. The loop will come to an end when customer confirms that their details are correct
         if ask_if_details_correct
             system('clear')
             puts Logo.colorize(:light_blue ).colorize( :background => :red)
@@ -62,6 +66,7 @@ module Controller
             # Loading effect
             sleep(1)
             
+            # just a 'loading' effect
             print 'Checking info '
             ".................................".each_char do |c|
                 sleep 0.1
@@ -137,7 +142,8 @@ module Controller
     end
 
 
-    # Loops through product list given
+    # function takes in a question and an array
+    # It loops through product array list given
     def Controller.list_product(question, product)
         prompt = TTY::Prompt.new
 
@@ -151,7 +157,7 @@ module Controller
         end
     end
 
-    
+    # function will list questions
     def Controller.ordering_products
         prompt = TTY::Prompt.new
 
@@ -201,6 +207,7 @@ module Controller
         sleep(0.8)       
     end
 
+    # just loading effects right after customer is done ordering 
     def Controller.loading_effects
 
         sleep(2)
