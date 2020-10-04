@@ -3,7 +3,6 @@ require_relative '../customer'
 require 'rspec'
 
 
-
 describe Customer::CustomerDetails do
 
     customer = Customer::CustomerDetails.new('Horacinis', 'Lonsdale street, Braddon ACT 2612')        
@@ -11,7 +10,7 @@ describe Customer::CustomerDetails do
     tea = 'Chamomile'
 
 
-    it "should instantiate a class" do        
+    it "should return the user's name" do        
         expect(customer.name).to eq('Horacinis')
     end
 

@@ -13,6 +13,15 @@ module RunApp
     # This a requirement to be able to use the tty prompt feature
     prompt = TTY::Prompt.new
 
+    
+    if ARGV[0] == 'help'
+        puts '-- H E L P ! --'
+        puts '* When asked to provide your information, make sure that you have entered your details correctly'
+        puts '* Please use the up and down keys and then press enter to choose from menu items'
+    end   
+
+
+
     # Shows intro logo and time
     Controller.intro(Controller::Logo)
 
