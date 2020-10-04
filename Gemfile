@@ -11,3 +11,5 @@ gem "colorize", "~> 0.8.1"
 gem "tty-prompt", "~> 0.22.0"
 
 gem "artii", "~> 2.1"
+
+gem "rspec", "~> 3.9"
