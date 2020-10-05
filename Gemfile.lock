@@ -37,6 +37,7 @@ PLATFORMS
 
 DEPENDENCIES
   artii (~> 2.1)
+  bundler (~> 2.1)
   colorize (~> 0.8.1)
   rspec (~> 3.9)
   tty-prompt (~> 0.22.0)
